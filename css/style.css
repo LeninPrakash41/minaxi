@@ -206,18 +206,49 @@ header.site .container::before{
   backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
 }
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none}
-.brand-logo{height:42px;width:auto;display:block}
+.brand picture{display:inline-flex;align-items:center}
+.brand-logo{height:42px;width:auto;display:block;transition:filter .2s ease, opacity .2s ease}
+
+@media (prefers-color-scheme: dark){
+  .brand-logo{
+    filter: brightness(0) invert(1);
+  }
+}
 
 nav.main{margin-left:auto;display:flex;gap:.15rem;align-items:center}
-nav.main a{
+nav.main a:not(.btn){
   font-size:.92rem;font-weight:500;color:var(--ink-2);text-decoration:none;
   padding:.55rem .8rem;border-radius:var(--radius-pill);position:relative;transition:color .15s ease,background .15s ease;
 }
-nav.main a:hover{color:var(--ink);background:var(--surface-2)}
-nav.main a[aria-current="page"]{color:var(--brand);font-weight:600;background:var(--brand-ink)}
-nav.main a.btn{color:#fff}
-nav.main a.btn:hover{color:#fff}
-.header-cta{margin-left:.75rem;flex:none}
+nav.main a:not(.btn):hover{color:var(--ink);background:var(--surface-2)}
+nav.main a:not(.btn)[aria-current="page"]{color:var(--brand);font-weight:600;background:var(--brand-ink)}
+
+nav.main .header-cta,
+nav.main a.btn{
+  margin-left:.75rem;flex:none;
+  padding:.6rem 1.2rem;font-size:.88rem;
+  text-decoration:none;
+}
+nav.main a.btn-primary,
+nav.main .header-cta.btn-primary{
+  background:var(--brand) !important;
+  color:#ffffff !important;
+}
+nav.main a.btn-primary:hover,
+nav.main .header-cta.btn-primary:hover{
+  background:var(--brand-2) !important;
+  color:#ffffff !important;
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-md);
+}
+nav.main a.btn-primary:active,
+nav.main .header-cta.btn-primary:active{
+  background:var(--brand) !important;
+  color:#ffffff !important;
+  transform:translateY(0);
+  box-shadow:var(--shadow-sm);
+}
+
 .menu-toggle{display:none;margin-left:auto;background:none;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:.5rem;color:var(--ink)}
 
 @media (max-width:980px){
@@ -227,9 +258,8 @@ nav.main a.btn:hover{color:#fff}
     overflow-y:auto;
   }
   nav.main.open{opacity:1;transform:translateY(0);pointer-events:auto}
-  nav.main a{padding:.9rem .5rem;border-radius:8px;font-size:1rem;border-bottom:1px solid var(--line)}
-  .header-cta.desktop-only{display:none}
-  nav.main .header-cta{display:inline-flex;margin:.9rem .5rem 0}
+  nav.main a:not(.btn){padding:.9rem .5rem;border-radius:8px;font-size:1rem;border-bottom:1px solid var(--line)}
+  nav.main .header-cta{display:inline-flex;margin:.9rem 0 0;width:100%;border-bottom:0}
   .menu-toggle{display:inline-flex}
 }
 @media (min-width:981px){.menu-toggle{display:none}}
@@ -797,3 +827,60 @@ footer.site a:hover{color:#fff;text-decoration:underline}
   .fgrid{grid-template-columns:1fr}
   .cta-final{padding:2.4rem 1.4rem}
 }
+
+/* ---------- accessibility skip-link ---------- */
+.skip-link{
+  position:absolute;top:-60px;left:1rem;z-index:999;
+  background:var(--brand);color:#fff;padding:.6rem 1.2rem;
+  border-radius:var(--radius-sm);font-weight:600;font-size:.9rem;
+  transition:top .2s ease;text-decoration:none;
+}
+.skip-link:focus{top:1rem;outline:3px solid var(--accent)}
+
+/* ---------- breadcrumb navigation ---------- */
+.breadcrumb-nav{padding:.6rem 0;font-size:.84rem;color:var(--ink-3)}
+.breadcrumb-nav ol{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;list-style:none;padding:0;margin:0}
+.breadcrumb-nav li{display:inline-flex;align-items:center;gap:.4rem}
+.breadcrumb-nav li+li::before{content:"/";color:var(--ink-3);opacity:.6}
+.breadcrumb-nav a{color:var(--ink-2);text-decoration:none;transition:color .15s ease}
+.breadcrumb-nav a:hover{color:var(--brand);text-decoration:underline}
+.breadcrumb-nav [aria-current="page"]{color:var(--ink);font-weight:600}
+
+/* ---------- careers job cards ---------- */
+.job-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:2rem;box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  display:flex;flex-direction:column;justify-content:space-between;gap:1.4rem;
+}
+.job-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:var(--brand-2)}
+.job-header{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap}
+.job-meta{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+.job-tag{
+  display:inline-flex;align-items:center;gap:.35rem;
+  padding:.3rem .75rem;border-radius:var(--radius-pill);
+  background:var(--surface-2);font-size:.78rem;font-weight:500;color:var(--ink-2);
+}
+
+/* ---------- quote option pill selectors ---------- */
+.pill-select{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.4rem}
+.pill-option{
+  display:inline-flex;align-items:center;padding:.5rem 1rem;
+  border-radius:var(--radius-pill);border:1px solid var(--line-strong);
+  background:var(--surface);font-size:.88rem;cursor:pointer;
+  transition:all .15s ease;color:var(--ink-2);
+}
+.pill-option:hover,.pill-option.active{
+  border-color:var(--brand);color:var(--brand);background:var(--brand-ink);
+}
+
+/* ---------- social integration links ---------- */
+.social-list{display:flex;gap:.75rem;align-items:center;margin-top:1rem}
+.social-link{
+  width:38px;height:38px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,.08);color:#CBD8ED;border:1px solid rgba(255,255,255,.14);
+  transition:all .16s ease;text-decoration:none;
+}
+.social-link:hover{background:var(--brand-2);color:#fff;transform:translateY(-2px);border-color:var(--brand-2)}
+.social-link svg,.social-link .icon{width:18px;height:18px}
+

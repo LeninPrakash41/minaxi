@@ -265,9 +265,80 @@
           fd.get('message') || '(none)',
         ].join('\n');
         const subject = 'Website Enquiry — ' + (fd.get('name') || 'New enquiry');
+        if (window.dataLayer) {
+          window.dataLayer.push({ event: 'generate_lead', form_name: 'contact_enquiry' });
+        }
         return 'mailto:service@minaxielectrical.ae?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines);
       },
       { successMessage: 'Thanks — your email app should open with your enquiry ready to send.' }
     );
   }
+
+  /* ---------- quote form ---------- */
+  const quoteForm = document.getElementById('quoteForm');
+  if (quoteForm && window.attachSmartForm) {
+    window.attachSmartForm(
+      quoteForm,
+      (fd) => {
+        const lines = [
+          'Name: ' + (fd.get('name') || ''),
+          'Company: ' + (fd.get('company') || ''),
+          'Phone: ' + (fd.get('phone') || ''),
+          'Email: ' + (fd.get('email') || ''),
+          'Site location: ' + (fd.get('emirate') || ''),
+          'Service required: ' + (fd.get('service_type') || ''),
+          'Equipment capacity / kVA: ' + (fd.get('kva_capacity') || 'Not sure / Need advice'),
+          'Brand / Make: ' + (fd.get('brand') || '(any/unknown)'),
+          'Number of units: ' + (fd.get('quantity') || '1'),
+          'Urgency / Timeline: ' + (fd.get('timeline') || 'Normal'),
+          '',
+          'Project / Equipment Scope Notes:',
+          fd.get('details') || '(none)',
+        ].join('\n');
+        const subject = 'Quotation Request [' + (fd.get('service_type') || 'Critical Power') + '] — ' + (fd.get('company') || fd.get('name') || 'Client');
+        if (window.dataLayer) {
+          window.dataLayer.push({ event: 'generate_lead', form_name: 'quote_request', value: fd.get('kva_capacity') });
+        }
+        return 'mailto:service@minaxielectrical.ae?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines);
+      },
+      { successMessage: 'Thanks — your email client will open with your customized quote details ready to send.' }
+    );
+  }
+
+  /* ---------- careers application form ---------- */
+  const careersForm = document.getElementById('careersForm');
+  if (careersForm && window.attachSmartForm) {
+    window.attachSmartForm(
+      careersForm,
+      (fd) => {
+        const lines = [
+          'Applicant Name: ' + (fd.get('name') || ''),
+          'Phone: ' + (fd.get('phone') || ''),
+          'Email: ' + (fd.get('email') || ''),
+          'Position applied for: ' + (fd.get('role') || 'General Application'),
+          'Years of UPS / DC experience in UAE: ' + (fd.get('experience') || ''),
+          'UAE Driving Licence: ' + (fd.get('license') || 'No'),
+          'Current visa status / availability: ' + (fd.get('visa') || ''),
+          '',
+          'Experience Summary & Qualifications:',
+          fd.get('summary') || '(none provided)',
+        ].join('\n');
+        const subject = 'Job Application: ' + (fd.get('role') || 'Field Technician') + ' — ' + (fd.get('name') || 'Applicant');
+        return 'mailto:service@minaxielectrical.ae?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(lines);
+      },
+      { successMessage: 'Thank you for your application. Your email client is opening with your candidate details pre-filled.' }
+    );
+  }
+
+  /* ---------- track phone & whatsapp clicks for analytics ---------- */
+  document.querySelectorAll('a[href^="tel:"]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (window.dataLayer) window.dataLayer.push({ event: 'contact_call', phone: el.getAttribute('href') });
+    });
+  });
+  document.querySelectorAll('a[href*="wa.me"]').forEach((el) => {
+    el.addEventListener('click', () => {
+      if (window.dataLayer) window.dataLayer.push({ event: 'contact_whatsapp' });
+    });
+  });
 })();

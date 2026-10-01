@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow scrapers from temporary or internal paths if any
+Disallow: /scratch/
+Disallow: /.git/
+
+# Sitemaps
+Sitemap: https://mcpeservices.com/sitemap.xml
