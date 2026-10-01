@@ -370,12 +370,12 @@ nav.main .header-cta.btn-primary:active{
 
 /* ---------- rule label (section-marker alternative to eyebrow) ---------- */
 .rule-label{
-  display:flex;align-items:center;gap:1.1rem;color:var(--ink-3);
-  font-family:"Space Grotesk",sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
-  margin-bottom:2.2rem;
+  display:flex;align-items:center;gap:1.1rem;color:var(--brand);
+  font-family:"Space Grotesk",sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:2.2rem;font-weight:600;
 }
 .rule-label::after{content:"";flex:1;height:1px;background:var(--line)}
-.rule-label b{color:var(--ink);font-weight:600}
+.rule-label b{color:var(--ink);font-weight:700}
 
 /* ---------- index list (numbered rows — replaces generic icon-card grids) ---------- */
 .index-list{border-top:1px solid var(--line-strong)}
@@ -384,13 +384,13 @@ nav.main .header-cta.btn-primary:active{
   padding:2.4rem 0;border-bottom:1px solid var(--line-strong);
 }
 .index-row .num{
-  font-family:"Space Grotesk",sans-serif;font-size:1rem;color:var(--line-strong);
-  font-weight:500;padding-top:.2rem;transition:color .2s ease;
+  font-family:"Space Grotesk",sans-serif;font-size:1.1rem;color:var(--brand);
+  font-weight:700;padding-top:.15rem;letter-spacing:-.02em;transition:color .2s ease, transform .2s ease;
 }
-.index-row:hover .num{color:var(--accent)}
+.index-row:hover .num{color:var(--accent);transform:translateX(2px)}
 .index-row h3{font-size:1.3rem;margin-bottom:.6rem}
-.index-row .meta{font-size:.85rem;color:var(--ink-3);padding-top:.2rem}
-.index-row .meta strong{display:block;color:var(--ink-2);font-weight:600;margin-bottom:.3rem}
+.index-row .meta{font-size:.85rem;color:var(--ink-2);padding-top:.2rem}
+.index-row .meta strong{display:block;color:var(--ink);font-weight:600;margin-bottom:.3rem}
 @media (max-width:760px){
   .index-row{grid-template-columns:3rem 1fr;padding:1.8rem 0}
   .index-row .meta{grid-column:2;padding-top:.6rem}
@@ -410,9 +410,9 @@ nav.main .header-cta.btn-primary:active{
 .t-step:last-child{padding-bottom:0}
 .t-step .t-dot{
   position:absolute;left:-1.05rem;top:0;width:2.1rem;height:2.1rem;border-radius:50%;
-  background:var(--surface);border:1px solid var(--brand);color:var(--brand);
+  background:var(--surface);border:1.5px solid var(--brand);color:var(--brand);
   display:flex;align-items:center;justify-content:center;
-  font-family:"Space Grotesk",sans-serif;font-size:.72rem;font-weight:600;
+  font-family:"Space Grotesk",sans-serif;font-size:.82rem;font-weight:700;
 }
 .t-step:last-child .t-dot{background:var(--brand);color:#fff}
 .t-step h3{font-size:1.08rem;margin-bottom:.4rem}
@@ -426,7 +426,7 @@ nav.main .header-cta.btn-primary:active{
 }
 .sector-thumb{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--radius-sm);margin-bottom:1rem;display:block;filter:saturate(.92)}
 .section-photo{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius-md);margin-bottom:1.4rem;display:block;border:1px solid var(--line)}
-.directory-row .d-head .num{font-family:"Space Grotesk",sans-serif;font-size:.78rem;color:var(--ink-3);display:block;margin-bottom:.6rem}
+.directory-row .d-head .num{font-family:"Space Grotesk",sans-serif;font-size:.84rem;font-weight:700;color:var(--brand);display:block;margin-bottom:.6rem;letter-spacing:.02em}
 .directory-row .d-head h3{font-size:1.4rem}
 .directory-row .d-head .range{font-family:"Space Grotesk",sans-serif;font-size:.78rem;color:var(--accent);display:block;margin-top:.6rem}
 .directory-row .who{margin-top:1rem;font-size:.82rem;color:var(--ink-3);line-height:1.9;border-top:1px solid var(--line);padding-top:.9rem}
@@ -538,7 +538,14 @@ a.card{text-decoration:none;display:flex;flex-direction:column}
 }
 .svc-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--brand)}
 .svc-tile .row{display:flex;align-items:center;justify-content:space-between}
-.svc-tile .num{font-family:"Space Grotesk",sans-serif;font-size:.8rem;color:var(--line-strong);font-weight:500}
+.svc-tile .num{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:.9rem;
+  color:var(--brand);
+  font-weight:700;
+  letter-spacing:-.01em;
+  transition:color .2s ease;
+}
 .svc-tile:hover .num{color:var(--accent)}
 .svc-tile .row .icon{color:var(--brand);width:19px;height:19px;transition:transform .25s ease}
 .svc-tile:hover .row .icon{transform:scale(1.18) rotate(-4deg)}
@@ -660,7 +667,13 @@ form.enquiry{display:flex;flex-direction:column;gap:1.1rem}
 .sector-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.9rem;display:flex;flex-direction:column;gap:.9rem}
 .sector-card .who{font-size:.82rem;color:var(--ink-3);padding-top:.9rem;border-top:1px solid var(--line);line-height:1.8}
 
-.method-num{font-family:"Space Grotesk";font-weight:800;font-size:1.6rem;color:var(--line-strong)}
+.method-num{
+  font-family:"Space Grotesk",sans-serif;
+  font-weight:800;
+  font-size:1.6rem;
+  color:var(--brand);
+  letter-spacing:-.02em;
+}
 
 /* ---------- people ---------- */
 .people-card{display:flex;gap:1.1rem;align-items:flex-start}
