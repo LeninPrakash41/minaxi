@@ -3,9 +3,9 @@
    ========================================================================== */
 
 :root{
-  --bg:#F8F8F5;
+  --bg:#FFFFFF;
   --surface:#FFFFFF;
-  --surface-2:#F0F1EC;
+  --surface-2:#F5F5F5;
   --ink:#12151A;
   --ink-2:#4B5560;
   --ink-3:#8A929B;
@@ -42,35 +42,8 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
-    --bg:#0B0D10;
-    --surface:#13161B;
-    --surface-2:#191D23;
-    --ink:#EEF0F2;
-    --ink-2:#AEB6BF;
-    --ink-3:#7A828C;
-    --line:rgba(255,255,255,.10);
-    --line-strong:rgba(255,255,255,.16);
-
-    --brand:#5B8DEF;
-    --brand-2:#7FA8FF;
-    --brand-ink:#101A2E;
-    --accent:#FF9147;
-    --accent-2:#FFB067;
-    --accent-ink:#2A1200;
-    --good:#3FD08C;
-    --good-ink:#0E251B;
-
-    --shadow-sm:0 2px 10px -4px rgba(0,0,0,.5);
-    --shadow-md:0 14px 34px -14px rgba(0,0,0,.6);
-    --shadow-lg:0 28px 60px -20px rgba(0,0,0,.7);
-    color-scheme: dark;
-  }
-}
-
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;color-scheme:light}
 body{
   margin:0;
   background:var(--bg);
@@ -173,9 +146,6 @@ section.tight{padding:3rem 0}
 .icon-badge.accent{
   background:linear-gradient(160deg,#FFE9D6, color-mix(in srgb, #FFE9D6 40%, var(--surface)));
   color:var(--accent);border-color:color-mix(in srgb, var(--accent) 18%, transparent);
-}
-@media (prefers-color-scheme: dark){
-  .icon-badge.accent{background:linear-gradient(160deg,#3A2311,#241708)}
 }
 
 /* ---------- top bar ---------- */
@@ -341,7 +311,6 @@ nav.main .header-cta.btn-primary:active{
   color:var(--ink-2);background:var(--surface);letter-spacing:.01em;
 }
 .chip.on{border-color:var(--accent);color:var(--accent-ink);background:#FFE9D6;font-weight:600}
-@media (prefers-color-scheme: dark){.chip.on{background:#3A2311;color:var(--accent-2)}}
 
 /* ---------- marquee ---------- */
 .marquee{
@@ -677,7 +646,6 @@ form.enquiry{display:flex;flex-direction:column;gap:1.1rem}
 
 /* ---------- footer ---------- */
 footer.site{background:#0B1524;color:#B9C6D9;margin-top:2rem;padding:4rem 0 1.6rem}
-@media (prefers-color-scheme: dark){footer.site{background:#050709}}
 .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2.5rem}
 footer.site h4{font-family:"Space Grotesk";font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:#7C90AC;margin-bottom:1.1rem;font-weight:600}
 footer.site p{font-size:.88rem;line-height:1.75;color:#B9C6D9}
